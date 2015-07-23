@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IRCP-Editor</title>
+  </head>
+  <body>
+
+    <main>
+      <pre id="play">No file loaded</pre>
+    </main>
+
+    <footer>
+      <small>We are using io.js <script>document.write(process.version)</script>
+      and Electron <script>document.write(process.versions['electron'])</script>.</small>
+    </footer>
+
+    <script>
+      require('./desktop.js');
+    </script>
+  </body>
+</html>
