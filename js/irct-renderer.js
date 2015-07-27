@@ -4,11 +4,12 @@ var irctParser = require('./irct-parser');
 function IrctRenderer(stage, path) {
 
   function entryToHtml(entry) {
+    var content = entry.content.replace(/^(\/\w*)/, '<span class="action">$1</span>');
     var entryHtml =
     `<div class="entry">
       <span class="delay">(${entry.delay})</span>
-      <span class="character">${entry.character}</span>:
-      <span class="content"><pre>${entry.content}</pre></span>
+      <span class="character">${entry.character}</span>
+      <span class="content">${content}</span>
     </div>`;
     return entryHtml;
   }
