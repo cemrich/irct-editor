@@ -4,10 +4,14 @@ var dialog = remote.require('dialog');
 var app = remote.require('app');
 var IrctRenderer = require('./irct-renderer');
 
+var titleNode = document.getElementsByTagName('title')[0];
+var titlePrefix = titleNode.innerText;
+
 function openFile(path) {
   var stage = document.getElementById('play');
   var irctRenderer = new IrctRenderer(stage, path);
   app.addRecentDocument(path);
+  titleNode.innerText = titlePrefix + ' – ' + path;
 }
 
 function showFileDialog() {
