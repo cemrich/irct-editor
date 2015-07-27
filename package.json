@@ -11,5 +11,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron-prebuilt": "^0.30.0"
+  },
+  "dependencies": {
+    "moment": "^2.10.3"
   }
 }

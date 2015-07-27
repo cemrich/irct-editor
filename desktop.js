@@ -2,18 +2,12 @@ var fs = require('fs');
 var remote = require('remote');
 var dialog = remote.require('dialog');
 var app = remote.require('app');
+var IrctRenderer = require('./irct-renderer');
 
 function openFile(path) {
-  console.log('open file: ' + path);
-
-  fs.readFile(path, 'utf8', function (err, data) {
-    if (err) {
-      console.log(err);
-    } else {
-      app.addRecentDocument(path);
-      document.getElementById('play').innerText = data;
-    }
-  });
+  var stage = document.getElementById('play');
+  var irctRenderer = new IrctRenderer(stage, path);
+  app.addRecentDocument(path);
 }
 
 function showFileDialog() {
