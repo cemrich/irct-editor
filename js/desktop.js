@@ -21,7 +21,9 @@ function showFileDialog() {
       properties: [ 'openFile' ]
     },
   function (path) {
-    openFile(path[0]);
+    if (typeof path !== 'undefined') {
+      openFile(path[0]);
+    }
   });
 }
 
