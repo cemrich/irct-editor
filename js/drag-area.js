@@ -18,6 +18,7 @@ function DragArea(domElement) {
   domElement.ondragover = function (e) {
     e.preventDefault();
     e.stopPropagation();
+    domElement.classList.add('dragover');
 
     var allowDrop = e.dataTransfer.files.length === 1 &&
       e.dataTransfer.types[0] === 'Files' &&
@@ -27,6 +28,7 @@ function DragArea(domElement) {
       e.dataTransfer.dropEffect = 'copy';
     } else {
       e.dataTransfer.dropEffect = 'none';
+      domElement.classList.add('invalid');
     }
 
     return allowDrop;
@@ -34,11 +36,15 @@ function DragArea(domElement) {
 
   domElement.ondragleave = domElement.ondragend = function (e) {
     e.preventDefault();
+    domElement.classList.remove('dragover');
+    domElement.classList.remove('invalid');
     return false;
   };
 
   domElement.ondrop = function (e) {
     e.preventDefault();
+    domElement.classList.remove('dragover');
+    domElement.classList.remove('invalid');
 
     var path = e.dataTransfer.files[0].path;
     dragArea.emit('openFile', path);

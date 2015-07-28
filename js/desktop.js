@@ -13,6 +13,7 @@ function openFile(path) {
   var stage = document.getElementById('play');
   var irctRenderer = new IrctRenderer(stage, path);
   app.addRecentDocument(path);
+  mainNode.classList.remove('nofile');
   titleNode.innerText = titlePrefix + ' – ' + path;
 }
 

@@ -18,6 +18,43 @@ main {
   overflow-y: scroll;
 }
 
+/* no file loaded hint */
+main.nofile:after {
+  display: block;
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  content: "No file loaded at the moment!";
+  text-align: center;
+}
+
+/* drag & drop */
+main.dragover {
+  overflow-y: auto;
+  background-color: rgb(169, 169, 219);
+  border: 5px dashed rgb(129, 129, 169);
+}
+main.dragover:after {
+  display: block;
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  content: "Drop here to load this file!";
+  text-align: center;
+}
+main.dragover > #play {
+  display: none;
+}
+main.dragover.invalid {
+  background-color: rgb(219, 169, 169);
+  border-color: rgb(169, 113, 113);
+}
+main.dragover.invalid:after {
+  content: "Only irct files are allowed!";
+}
+
 footer {
   width: 100%;
   text-align: center;
