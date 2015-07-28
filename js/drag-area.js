@@ -1,12 +1,23 @@
 var events = require('events');
 
 
-function DragArea() {
+function DragArea(domElement) {
 
   var dragArea = this;
 
-  document.ondragover = function (e) {
+  // prevent drag&drop on footer, etc.
+  document.ondragover =
+  document.ondrop =
+  document.ondragleave =
+  document.ondragend = function (e) {
     e.preventDefault();
+    e.dataTransfer.dropEffect = 'none';
+    return false;
+  };
+
+  domElement.ondragover = function (e) {
+    e.preventDefault();
+    e.stopPropagation();
 
     var allowDrop = e.dataTransfer.files.length === 1 &&
       e.dataTransfer.types[0] === 'Files' &&
@@ -21,12 +32,12 @@ function DragArea() {
     return allowDrop;
   };
 
-  document.ondragleave = document.ondragend = function (e) {
+  domElement.ondragleave = domElement.ondragend = function (e) {
     e.preventDefault();
     return false;
   };
 
-  document.ondrop = function (e) {
+  domElement.ondrop = function (e) {
     e.preventDefault();
 
     var path = e.dataTransfer.files[0].path;
@@ -39,4 +50,4 @@ function DragArea() {
 
 
 DragArea.prototype.__proto__ = events.EventEmitter.prototype;
-module.exports = new DragArea();
+module.exports = DragArea;

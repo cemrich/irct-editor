@@ -3,7 +3,9 @@ var remote = require('remote');
 var dialog = remote.require('dialog');
 var app = remote.require('app');
 var IrctRenderer = require('./irct-renderer');
+var DragArea = require('./drag-area');
 
+var mainNode = document.getElementsByTagName('main')[0];
 var titleNode = document.getElementsByTagName('title')[0];
 var titlePrefix = titleNode.innerText;
 
@@ -28,7 +30,7 @@ function showFileDialog() {
 }
 
 // set up file drag & drop
-var dragArea = require('./drag-area');
+var dragArea = new DragArea(mainNode);
 
 dragArea.on('openFile', function (path) {
   openFile(path);
