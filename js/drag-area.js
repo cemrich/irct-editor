@@ -35,10 +35,12 @@ function DragArea(domElement) {
   };
 
   domElement.ondragleave = domElement.ondragend = function (e) {
-    e.preventDefault();
-    domElement.classList.remove('dragover');
-    domElement.classList.remove('invalid');
-    return false;
+    if (e.target === e.currentTarget) {
+      e.preventDefault();
+      domElement.classList.remove('dragover');
+      domElement.classList.remove('invalid');
+      return false;
+    }
   };
 
   domElement.ondrop = function (e) {
