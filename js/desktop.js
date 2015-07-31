@@ -11,13 +11,10 @@ var mainNode = document.getElementsByTagName('main')[0];
 var titleNode = document.getElementsByTagName('title')[0];
 var titlePrefix = titleNode.innerText;
 
-// try to use saved bounds
-var windowBounds = localStorage.getItem('window-bounds');
-if (windowBounds !== null) {
-  windowBounds = JSON.parse(windowBounds);
-  browserWindow.setBounds(windowBounds);
-}
+// setup
+restoreLastWindowPosition();
 browserWindow.show();
+openLastUsedFile();
 
 // save window properties for later use
 window.onunload = function() {
@@ -25,12 +22,29 @@ window.onunload = function() {
   localStorage.setItem('window-bounds', JSON.stringify(windowBounds));
 };
 
+function restoreLastWindowPosition() {
+  var windowBounds = localStorage.getItem('window-bounds');
+  if (windowBounds !== null) {
+    windowBounds = JSON.parse(windowBounds);
+    browserWindow.setBounds(windowBounds);
+  }
+}
+
+function openLastUsedFile() {
+  var lastUsedFilePath = localStorage.getItem('last-used-file');
+  if (lastUsedFilePath !== null) {
+    openFile(lastUsedFilePath);
+  }
+  return lastUsedFilePath;
+}
+
 function openFile(path) {
   var stage = document.getElementById('play');
   var irctRenderer = new IrctRenderer(stage, path);
-  app.addRecentDocument(path);
+  localStorage.setItem('last-used-file', path); // save for later user
+  app.addRecentDocument(path); // save to os "recent documents"
   mainNode.classList.remove('nofile');
-  titleNode.innerText = titlePrefix + ' – ' + path;
+  titleNode.innerText = titlePrefix + ' – ' + path; // change window title
 }
 
 function showFileDialog() {
