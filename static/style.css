@@ -13,8 +13,8 @@ body {
 }
 
 main {
+  display: flex;
   flex: 9;
-  padding: 1em;
   overflow-y: scroll;
 }
 
@@ -63,8 +63,27 @@ footer {
   color: #bbb;
 }
 
-.play {
+#play {
+  position: relative;
   display: table;
+  flex: 9;
+  padding-left: 3em;
+}
+
+#play:before {
+  position: absolute;
+  top:0;
+  left: 0;
+  display: block;
+  content: " ";
+  width: 2em;
+  height: 100%;
+
+  background-image: linear-gradient(white 2px, transparent 2px),
+  linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px);
+  background-size: 100px 100px, 20px 20px;
+  background-position: -2px -2px, -1px -1px;
+  background-repeat-x: no-repeat;
 }
 
 .entry {
@@ -86,7 +105,12 @@ footer {
 }
 
 .entry .content {
-  display: table-cell;
+  display: inline-block;
+  margin-bottom: 0.3em;
+  padding: 0.3em 1em;
+  background-color: white;
+  border-radius: 1em;
+  box-shadow: rgba(0,0,0,0.2) 1px 2px 5px;
 }
 
 .entry .content .action {

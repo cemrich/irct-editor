@@ -5,11 +5,12 @@ function IrctRenderer(stage, path) {
 
   function entryToHtml(entry) {
     var content = entry.content.replace(/^(\/\w*)/, '<span class="action">$1</span>');
+    var marginTop = entry.delay / 1000;
     var entryHtml =
     `<div class="entry">
       <span class="delay">(${entry.delay})</span>
       <span class="character">${entry.character}</span>
-      <span class="content">${content}</span>
+      <span class="content" style="margin-top: ${marginTop}em">${content}</span>
     </div>`;
     return entryHtml;
   }
