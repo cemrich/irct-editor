@@ -1,3 +1,5 @@
+"use strict";
+
 var fs = require('fs');
 var remote = require('remote');
 var dialog = remote.require('dialog');

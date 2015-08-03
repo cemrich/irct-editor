@@ -1,3 +1,5 @@
+"use strict";
+
 var events = require('events');
 
 
@@ -54,8 +56,8 @@ function DragArea(domElement) {
     return true;
   };
 
-};
+}
 
 
-DragArea.prototype.__proto__ = events.EventEmitter.prototype;
+DragArea.prototype = Object.create(events.EventEmitter.prototype);
 module.exports = DragArea;

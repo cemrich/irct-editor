@@ -1,3 +1,5 @@
+"use strict";
+
 var events = require('events');
 var irctParser = require('./irct-parser');
 
@@ -22,11 +24,11 @@ function IrctRenderer(stage, path) {
     } else {
       stage.innerText = 'An error ocurred loading file ' + path + '\n' + error;
     }
-  };
+  }
 
   irctParser.parse(path, onParseFinished);
-};
+}
 
 
-IrctRenderer.prototype.__proto__ = events.EventEmitter.prototype;
+IrctRenderer.prototype = Object.create(events.EventEmitter.prototype);
 module.exports = IrctRenderer;

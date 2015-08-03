@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
   var importDoc = document.currentScript.ownerDocument; // importee
 
@@ -43,7 +45,7 @@
   proto.readAttributes = function () {
     this.delay = this.getAttribute('delay') || 0;
     this.name = this.getAttribute('character') || '?';
-    this.content = this.textContent.replace(/^(\/\w*)/, '<span class="action">$1</span>');;
+    this.content = this.textContent.replace(/^(\/\w*)/, '<span class="action">$1</span>');
     this.marginTop = this.delay / 1000;
   };
 

@@ -1,3 +1,5 @@
+"use strict";
+
 var events = require('events');
 var remote = require('remote');
 var Menu = remote.require('menu');
@@ -33,8 +35,8 @@ function MenuBar() {
   var menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 
-};
+}
 
 
-MenuBar.prototype.__proto__ = events.EventEmitter.prototype;
+MenuBar.prototype = Object.create(events.EventEmitter.prototype);
 module.exports = new MenuBar();
