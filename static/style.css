@@ -85,34 +85,3 @@ footer {
   background-position: -2px -2px, -1px -1px;
   background-repeat-x: no-repeat;
 }
-
-.entry {
-  display: table-row;
-}
-
-.entry .delay {
-  display: none;
-}
-
-.entry .character {
-  display: table-cell;
-  padding: 0.4em 0.3em 0.4em 0;
-  font-weight: bold;
-}
-
-.entry .character:after {
-  content: ':';
-}
-
-.entry .content {
-  display: inline-block;
-  margin-bottom: 0.3em;
-  padding: 0.3em 1em;
-  background-color: white;
-  border-radius: 1em;
-  box-shadow: rgba(0,0,0,0.2) 1px 2px 5px;
-}
-
-.entry .content .action {
-  opacity: 0.7;
-}

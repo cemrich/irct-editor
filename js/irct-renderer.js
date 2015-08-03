@@ -4,19 +4,15 @@ var irctParser = require('./irct-parser');
 function IrctRenderer(stage, path) {
 
   function entryToHtml(entry) {
-    var content = entry.content.replace(/^(\/\w*)/, '<span class="action">$1</span>');
-    var marginTop = entry.delay / 1000;
-    var entryHtml =
-    `<div class="entry">
-      <span class="delay">(${entry.delay})</span>
-      <span class="character">${entry.character}</span>
-      <span class="content" style="margin-top: ${marginTop}em">${content}</span>
-    </div>`;
+    var entryHtml = document.createElement("irct-entry");
+    entryHtml.setAttribute("delay", entry.delay);
+    entryHtml.setAttribute("character", entry.character);
+    entryHtml.textContent = entry.content;
     return entryHtml;
   }
 
   function showEntry(entry) {
-    stage.innerHTML = stage.innerHTML + entryToHtml(entry);
+    stage.appendChild(entryToHtml(entry));
   }
 
   function onParseFinished(error, data) {
